@@ -17,6 +17,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+
     permissions:
       contents: read
 
@@ -39,6 +40,12 @@ jobs:
         chmod +x ./gradlew
         ./gradlew build
 
+    - name : Upload build artifact
+      uses : actions/upload-artifact@v2
+      with :
+        name : cicdTestServer
+        path : build/libs/cicdTestServer-0.0.1-SNAPSHOT.jar
+
   dependency-submission:
 
     runs-on: ubuntu-latest
@@ -55,3 +62,16 @@ jobs:
 
     - name: Generate and submit dependency graph
       uses: gradle/actions/dependency-submission@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
+
+  deploy :
+
+    needs : build
+
+    runs-on : ubuntu-latest
+
+    steps :
+    - name : DownLoad build artifact
+      uses : actions/download-artifact@v2
+      with :
+        name : cicdTestServer
+        path : build/libs/
