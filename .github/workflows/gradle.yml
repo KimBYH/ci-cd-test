@@ -75,3 +75,7 @@ jobs:
       with :
         name : cicdTestServer
         path : build/libs/
+
+    - name : Deploy to EC2
+      run : |
+        echo "${{ secrets.SSH_KEY}}" > digital-gallery.pem
