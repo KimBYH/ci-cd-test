@@ -80,5 +80,5 @@ jobs:
       run : |
         echo "${{ secrets.SSH_KEY}}" > digital-gallery.pem
         chmod 600 digital-gallery.pem
-        scp -i digital-gallery.pem -o StricHostKeyChecking=no build/libs/cicdTestServer-0.0.1-SNAPSHOT.jar ${{secrets.EC2_USERNAME}}@${{secrets.EC2_HOST}}:/home/${{secrets.EC2_USERNAME}}/cicdTestServer.jar
+        scp -i digital-gallery.pem -o StrictHostKeyChecking=no build/libs/cicdTestServer-0.0.1-SNAPSHOT.jar ${{secrets.EC2_USERNAME}}@${{secrets.EC2_HOST}}:/home/${{secrets.EC2_USERNAME}}/cicdTestServer.jar
         rm -f digital-gallery.pem
