@@ -15,4 +15,9 @@ public class testGetMapping {
     public String hello() {
         return "hello";
     }
+
+    @GetMapping("/test")
+    public String test() {
+        return "test";
+    }
 }
